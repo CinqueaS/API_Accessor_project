@@ -8,7 +8,9 @@ const getAnime = async () => {
 
 let animeTitleEnglish = document.querySelector(`#animeTitleEnglish`)
 let animeTitleJapanese = document.querySelector(`#animeTitleJapanese`)
-
+let Synopsis = document.querySelector(`#Synopsis`)
+let Card = document.querySelector(`#animeCard`)
+let trailer = document.querySelector(`#trailer`)
 button.addEventListener(`click`, async() => {
 
     let input = document.querySelector(`#textInput`).value
@@ -19,9 +21,16 @@ button.addEventListener(`click`, async() => {
 
     let titleEnglish = response.data.data[0].title_english
     let titleJapanese = response.data.data[0].title_japanese
+    let animeSynopsis = response.data.data[0].synopsis
+    let animeCard = response.data.data[0].images.jpg.image_url
+    let animeTrailer = response.data.data[0].trailer.embed_url
 
     animeTitleEnglish.innerText = titleEnglish
     animeTitleJapanese.innerText = titleJapanese
+    Synopsis.innerText = animeSynopsis
+    Card.setAttribute (`src`, `${animeCard}`)
+    trailer.setAttribute (`src`, `${animeTrailer}`)
+
 console.log(titleEnglish)
 console.log(titleJapanese)
 console.log(response)

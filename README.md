@@ -1,7 +1,7 @@
 # API_Accessor_project
 
 ## Description
-Accessing the AniList API to search for anime based on various different parameters 
+Accessing the Jikan API to search for anime based on their names and aliases 
 
 ## Steps to get started
 - Create HTML file to display content
@@ -12,4 +12,4 @@ Accessing the AniList API to search for anime based on various different paramet
 - etc.
 
 ## Credits
-AniList API https://github.com/AniList/ApiV2-GraphQL-Docs
+Jikan API https://github.com/jikan-me/jikan

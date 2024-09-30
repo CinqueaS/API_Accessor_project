@@ -6,13 +6,22 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script defer src="script.js"></script>
     <link href="style.css" rel="stylesheet">  
+    <script src="https://kit.fontawesome.com/637ef4af4f.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body>
-
-    <input id="textInput" type="text" placeholder="Anime"/>
-    <button id="submitButton">Click!</button>
-
+    <div class="searchBox">
+        <div class="row">
+            <input id="textInput" type="text" placeholder="Anime" autocomplete="off"/>
+            <button id="submitButton"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="resultBox">
+            <ul>
+                <li>Anime 1</li>
+                <li>Anime 2</li>
+            </ul>
+        </div>
+    </div>
     <h1 id="animeTitleEnglish"> </h1>
     <h1 id="animeTitleJapanese"> </h1>
     <p id="Synopsis"> </p>

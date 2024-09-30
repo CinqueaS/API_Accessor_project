@@ -11,6 +11,10 @@ let animeTitleJapanese = document.querySelector(`#animeTitleJapanese`)
 let Synopsis = document.querySelector(`#Synopsis`)
 let Card = document.querySelector(`#animeCard`)
 let trailer = document.querySelector(`#trailer`)
+let resultsBox = document.querySelector(`.resultBox`)
+
+
+
 button.addEventListener(`click`, async() => {
 
     let input = document.querySelector(`#textInput`).value
@@ -30,8 +34,19 @@ button.addEventListener(`click`, async() => {
     Synopsis.innerText = animeSynopsis
     Card.setAttribute (`src`, `${animeCard}`)
     trailer.setAttribute (`src`, `${animeTrailer}`)
+    input.onkeyup = function(){
+        let result = []
+        let inputs = input.value
+        if(inputs.length){
+            result = response.data.filter((anime) =>{
+                anime.includes(inputs)
+            })
+            console.log(result)
 
+        }
+    }
 console.log(titleEnglish)
 console.log(titleJapanese)
 console.log(response)
 })
+

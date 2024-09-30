@@ -1,0 +1,12 @@
+body{
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    flex-direction: column;
+}
+
+#textInput, #submitButton{
+    margin: auto;
+    padding: 0%;
+}

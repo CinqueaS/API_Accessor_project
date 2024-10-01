@@ -1,15 +1,18 @@
 const button = document.querySelector(`#submitButton`)
+let input = document.querySelector(`#textInput`)
+let tempSelector = document.querySelector(`#textInput`).value
 let animeList = []
 
 const getAnime = async () => {
-    const animes = await axios.get(`https://api.jikan.moe/v4/anime?q=?limit=1000`)
+    const animes = await axios.get(`https://api.jikan.moe/v4/anime?q=${input.value}`)
+    console.log()
     animeList = animes.data.data.map(anime => anime.title)
-    //console.log(animeList)
+    console.log(animes)
 }
 //window.onload = getAnime()
-async function renderData(){
-    await getAnime()
-}
+// async function renderData(){
+//     await getAnime()
+// }
 
 let animeTitleEnglish = document.querySelector(`#animeTitleEnglish`)
 let animeTitleJapanese = document.querySelector(`#animeTitleJapanese`)
@@ -17,7 +20,7 @@ let Synopsis = document.querySelector(`#Synopsis`)
 let Card = document.querySelector(`#animeCard`)
 let trailer = document.querySelector(`#trailer`)
 let resultsBox = document.querySelector(`.resultBox`)
-let input = document.querySelector(`#textInput`)
+
 
 
 // button.addEventListener(`click`, async() => {
@@ -103,9 +106,11 @@ button.addEventListener(`click`, () => {
 })
 
 input.onkeyup = function(){   
+    getAnime()
     let result = []
     let inputs = input.value
     if(inputs.length){
+        
         result = animeList.filter((keyword)=>{
             return keyword.toLowerCase().includes(inputs.toLowerCase())
         })
@@ -119,7 +124,7 @@ input.onkeyup = function(){
     }
 }
 
-renderData()
+//renderData()
 
 function display(result){
     const content = result.map((list) =>{
@@ -128,3 +133,4 @@ function display(result){
 
     resultsBox.innerHTML = "<ul>" + content.join('') + "</ul>"
 }
+

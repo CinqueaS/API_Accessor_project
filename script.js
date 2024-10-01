@@ -3,10 +3,13 @@ let animeList = []
 
 const getAnime = async () => {
     const animes = await axios.get(`https://api.jikan.moe/v4/anime?q=?limit=1000`)
-    animeList = animes.data.data.map(anime => anime.name)
-    console.log(animes)
+    animeList = animes.data.data.map(anime => anime.title)
+    //console.log(animeList)
 }
-window.onlaod = getAnime()
+//window.onload = getAnime()
+async function renderData(){
+    await getAnime()
+}
 
 let animeTitleEnglish = document.querySelector(`#animeTitleEnglish`)
 let animeTitleJapanese = document.querySelector(`#animeTitleJapanese`)
@@ -98,3 +101,17 @@ input.addEventListener(`keypress`, (e) => {
 button.addEventListener(`click`, () => {
     animeSearch()
 })
+
+input.onkeyup = function(){   
+    let result = []
+    let inputs = input.value
+    if(inputs.length){
+        result = animeList.filter((keyword)=>{
+            return keyword.toLowerCase().includes(inputs.toLowerCase())
+        })
+         console.log(result)
+
+    }
+}
+
+renderData()

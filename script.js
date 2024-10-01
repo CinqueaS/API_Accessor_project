@@ -112,6 +112,19 @@ input.onkeyup = function(){
          console.log(result)
 
     }
+    display(result)
+
+    if(!result.length){
+        resultsBox.innerHTML = ""
+    }
 }
 
 renderData()
+
+function display(result){
+    const content = result.map((list) =>{
+        return "<li>" + list + "</li>"
+    })
+
+    resultsBox.innerHTML = "<ul>" + content.join('') + "</ul>"
+}

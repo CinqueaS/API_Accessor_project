@@ -3,6 +3,7 @@ let input = document.querySelector(`#textInput`)
 let tempSelector = document.querySelector(`#textInput`).value
 let animeList = []
 
+
 const getAnime = async () => {
     const animes = await axios.get(`https://api.jikan.moe/v4/anime?q=${input.value}`)
     console.log()
@@ -63,7 +64,7 @@ async function animeSearch() {
     let inputBox = document.querySelector(`#textInput`).value
     console.log(input)
     let response = await axios.get(
-        `https://api.jikan.moe/v4/anime?q=${inputBox}&sfw`
+        `https://api.jikan.moe/v4/anime?q=${inputBox}&sfw`, {timeout: 3000}
     )
 
     let titleEnglish = response.data.data[0].title_english
@@ -105,7 +106,8 @@ button.addEventListener(`click`, () => {
     animeSearch()
 })
 
-input.onkeyup = function(){   
+input.onkeyup = async function(){   
+    await delay(2000)
     getAnime()
     let result = []
     let inputs = input.value
@@ -127,6 +129,7 @@ input.onkeyup = function(){
 //renderData()
 
 function display(result){
+
     const content = result.map((list) =>{
         return "<li>" + list + "</li>"
     })
@@ -134,3 +137,6 @@ function display(result){
     resultsBox.innerHTML = "<ul>" + content.join('') + "</ul>"
 }
 
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}

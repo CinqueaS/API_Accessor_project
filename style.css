@@ -26,7 +26,7 @@ nav ul li{
 
 header:before{
     content: "";
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     background-color: black;
@@ -110,11 +110,11 @@ button .fa-solid{
 }
 
 #animeCard{
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     z-index: -5;
-    object-fit: cover;
+    object-fit: fill;
 }
 
 footer{

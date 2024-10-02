@@ -4,7 +4,7 @@ let animeList = []
 
 
 const getAnime = async () => {
-    const animes = await axios.get(`https://api.jikan.moe/v4/anime?q=${input.value}`)
+    const animes = await axios.get(`https://api.jikan.moe/v4/anime?q=${input.value}&limit=4`)
     console.log()
     animeList = animes.data.data.map(anime => anime.title)
     console.log(animes)

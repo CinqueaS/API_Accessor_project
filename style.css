@@ -1,6 +1,22 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+nav{
+    background: #940707;
+    display: flex;
+    justify-content: center;
+}
+nav ul{
+    display: flex;
+    list-style-type: none;
+    flex-direction: row;
+}
+
+nav ul li{
+    margin-right: 10px;
 }
 
 header:before{
@@ -38,7 +54,7 @@ header:before{
     color: white;
 }
 .searchBox{
-   width: 400px;
+   width: 420px;
    background: white;
    margin: 200px auto 0;
    border-radius: 5px;
@@ -86,4 +102,12 @@ button .fa-solid{
 }
 .resultBox ul li:hover{
     background: lightcoral;
+}
+
+#animeCard{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -5;
+    object-fit: cover;
 }

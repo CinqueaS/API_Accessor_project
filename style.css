@@ -4,7 +4,12 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
-nav{
+.topNav{
+    background: #940707;
+    display: flex;
+    justify-content: center;
+}
+.bottomNav{
     background: #940707;
     display: flex;
     justify-content: center;
@@ -111,3 +116,13 @@ button .fa-solid{
     z-index: -5;
     object-fit: cover;
 }
+
+footer{
+    position: fixed;
+    left:0px;
+    bottom:0px;
+    height:30px;
+    width:100%;
+    background: #940707;
+ }
+

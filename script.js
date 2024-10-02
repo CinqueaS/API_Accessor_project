@@ -1,6 +1,5 @@
 const button = document.querySelector(`#submitButton`)
 let input = document.querySelector(`#textInput`)
-let tempSelector = document.querySelector(`#textInput`).value
 let animeList = []
 
 

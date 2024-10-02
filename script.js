@@ -4,7 +4,7 @@ let animeList = []
 
 
 const getAnime = async () => {
-    const animes = await axios.get(`https://api.jikan.moe/v4/anime?q=${input.value}&limit=4`)
+    const animes = await axios.get(`https://api.jikan.moe/v4/anime?q=${input.value}&sfw&limit=4`)
     console.log()
     animeList = animes.data.data.map(anime => anime.title)
     console.log(animes)
@@ -24,7 +24,7 @@ async function animeSearch() {
     let inputBox = document.querySelector(`#textInput`).value
     console.log(input)
     let response = await axios.get(
-        `https://api.jikan.moe/v4/anime?q=${inputBox}&sfw`, {timeout: 3000}
+        `https://api.jikan.moe/v4/anime?q=${inputBox}&sfw`, 
     )
 
     let titleEnglish = response.data.data[0].title_english
@@ -55,10 +55,18 @@ input.addEventListener(`keypress`, (e) => {
 button.addEventListener(`click`, () => {
     animeSearch()
 })
+let typingTimer
+let doneTypingInterval = 1000
 
-input.onkeyup = async function(){   
-    await delay(2000)
-    getAnime()
+input.addEventListener(`keyup`, () =>{
+    clearTimeout(typingTimer);
+    if (input.value) {
+        typingTimer = setTimeout(doneTyping, doneTypingInterval);
+    }
+})
+
+async function doneTyping(){   
+    await getAnime()
     let result = []
     let inputs = input.value
     if(inputs.length){
@@ -76,15 +84,10 @@ input.onkeyup = async function(){
     }
 }
 
-function display(result){
-
+async function display(result){
     const content = result.map((list) =>{
         return "<li>" + list + "</li>"
     })
 
     resultsBox.innerHTML = "<ul>" + content.join('') + "</ul>"
-}
-
-function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
 }

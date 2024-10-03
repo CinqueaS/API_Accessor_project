@@ -1,8 +1,8 @@
 const button = document.querySelector(`#submitButton`)
 let input = document.querySelector(`#textInput`)
 let animeList = []
-
-
+const regex = new RegExp('★', 'gi')
+const subst = ' '
 const getAnime = async () => {
     const animes = await axios.get(`https://api.jikan.moe/v4/anime?q=${input.value}&sfw&limit=4`)
     console.log()
@@ -23,10 +23,10 @@ async function animeSearch() {
     
     let inputBox = document.querySelector(`#textInput`).value
     console.log(input)
+    let substitute = inputBox.replace(regex, subst)
     let response = await axios.get(
-        `https://api.jikan.moe/v4/anime?q=${inputBox}&sfw`, 
+        `https://api.jikan.moe/v4/anime?q=${substitute}&sfw&limit=4`, 
     )
-
     let titleEnglish = response.data.data[0].title_english
     let titleJapanese = response.data.data[0].title_japanese
     let animeSynopsis = response.data.data[0].synopsis
@@ -86,8 +86,14 @@ async function doneTyping(){
 
 async function display(result){
     const content = result.map((list) =>{
-        return "<li>" + list + "</li>"
+        return "<li onclick=selectInput(this)>" + list + "</li>"
     })
 
     resultsBox.innerHTML = "<ul>" + content.join('') + "</ul>"
 }
+function selectInput(list){
+    input.value = list.innerText
+
+    animeSearch()
+}
+
